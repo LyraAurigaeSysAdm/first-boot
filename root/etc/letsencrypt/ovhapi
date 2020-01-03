@@ -1,0 +1,4 @@
+dns_ovh_endpoint = ovh-eu
+dns_ovh_application_key = TYPE_TOKEN_HERE
+dns_ovh_application_secret = TYPE_TOKEN_HERE
+dns_ovh_consumer_key = TYPE_TOKEN_HERE
