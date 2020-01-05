@@ -34,6 +34,7 @@ fi
 
 # On copie les fichiers nécessaires
 rsync -r ../root/* /
+mkdir -p /var/lib/letsencrypt
 chmod +x /opt/renew_ssl_certificate.sh
 echo ""
 echo "*************************************"
