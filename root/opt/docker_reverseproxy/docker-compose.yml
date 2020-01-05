@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  reverse:
+    container_name: reverseproxy
+    hostname: reverseproxy
+    image: nginx:stable-alpine
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /etc/nginx:/etc/nginx:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    command: /bin/bash -c "cp /etc/nginx/reverseproxy_main.conf nginx.conf"
