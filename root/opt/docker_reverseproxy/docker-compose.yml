@@ -1,6 +1,11 @@
 version: '3'
 
 services:
+  networks:
+    frontend:
+      name: reverseproxy-main-network
+      driver: custom-driver-1
+
   reverse:
     container_name: reverseproxy
     hostname: reverseproxy
@@ -12,4 +17,6 @@ services:
     volumes:
       - /etc/nginx:/etc/nginx:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - frontend
     command: /bin/bash -c "cp /etc/nginx/reverseproxy_main.conf nginx.conf"
