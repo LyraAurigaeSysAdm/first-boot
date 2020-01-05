@@ -1,0 +1,23 @@
+-P INPUT DROP
+-P FORWARD DROP
+-P OUTPUT DROP
+-A INPUT -i lo -j ACCEPT
+-A INPUT -i eht0 -p udp -m udp --sport 53 -j ACCEPT
+-A INPUT -i eht0 -p tcp -m tcp --sport 53 -j ACCEPT
+-A INPUT -i eht0 -m state --state ESTABLISHED -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A OUTPUT -o eht0 -p udp -m udp --dport 53 -j ACCEPT
+-A OUTPUT -o eht0 -p tcp -m tcp --dport 53 -j ACCEPT
+-A OUTPUT -o eht0 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A OUTPUT -p icmp -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -m multiport --dports http,https --state NEW,ESTABLISHED -j ACCEPT
+-N LOG_ACCEPT
+-A LOG_ACCEPT -j LOG --log-prefix "[IPTABLES ACCEPT] : "
+-A LOG_ACCEPT -j ACCEPT
+-N LOG_DROP
+-A LOG_DROP -j LOG --log-prefix "[IPTABLES DROP] : "
+-A LOG_DROP -j DROP
+-A OUTPUT -j LOG_DROP
+-A INPUT -j LOG_DROP
+-A FORWARD -j LOG_DROP
