@@ -1,0 +1,1 @@
+Any shell file in this directory will be executed __after__ package installation
