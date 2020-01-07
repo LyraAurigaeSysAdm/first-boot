@@ -1,0 +1,1 @@
+Any shell file in this directory will be executed __before__ package installation
