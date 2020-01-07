@@ -35,6 +35,7 @@ echo "*************************************"
 echo ""
 
 # On lance le docker compose de GitLab
+docker network create -d bridge --subnet 172.10.0.0/24 reverseproxy-main-network
 cd /opt/docker_reverseproxy && docker-compose up -d
 echo ""
 echo "**************************************************************"
