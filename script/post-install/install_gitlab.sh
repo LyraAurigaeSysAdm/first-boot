@@ -1,17 +1,10 @@
 #!/bin/bash
 
-# On installe Docker
-apt update
-apt upgrade
-apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common rsync
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-apt update
-apt install docker-ce docker-ce-cli containerd.io
+# On installe le docker GitLab
 echo ""
-echo "*******************"
-echo "* Docker installé *"
-echo "*******************"
+echo "*********************************"
+echo "* Installation du docker GitLab *"
+echo "*********************************"
 echo ""
 
 # On installe Docker-compose
@@ -44,7 +37,7 @@ echo ""
 # On lance le docker compose de GitLab
 cd /opt/docker_gitlab && docker-compose up -d
 echo ""
-echo "***********************************************************"
-echo "* Docker Gitlab lancé (vérifiez les erreurs potentielles) *"
-echo "***********************************************************"
+echo "**************************************************************"
+echo "* Docker Gitlab installé (vérifiez les erreurs potentielles) *"
+echo "**************************************************************"
 echo ""
