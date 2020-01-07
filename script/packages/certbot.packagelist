@@ -1,0 +1,10 @@
+apt-transport-https
+ca-certificates
+curl
+gnupg-agent
+software-properties-common
+rsync
+nano
+docker-ce
+docker-ce-cli
+containerd.io

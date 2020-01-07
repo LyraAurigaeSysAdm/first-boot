@@ -1,17 +1,10 @@
 #!/bin/bash
 
-# On installe Docker
-apt update
-apt upgrade
-apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common rsync nano
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-apt update
-apt install docker-ce docker-ce-cli containerd.io
+# On installe le docker certbot
 echo ""
-echo "*******************"
-echo "* Docker installé *"
-echo "*******************"
+echo "**********************************"
+echo "* Installation du docker Certbot *"
+echo "**********************************"
 echo ""
 
 # On installe Docker-compose
@@ -91,7 +84,7 @@ echo ""
 
 # Fin du script
 echo ""
-echo "*************************"
-echo "* Fin de l'installation *"
-echo "*************************"
+echo "***************************"
+echo "* Docker Certbot installé *"
+echo "***************************"
 echo ""
