@@ -27,7 +27,6 @@ fi
 
 # On copie les fichiers nécessaires
 rsync -r ../root/* /
-mkdir -p /etc/letsencrypt
 echo ""
 echo "*************************************"
 echo "* Fichiers du dossier racine copiés *"

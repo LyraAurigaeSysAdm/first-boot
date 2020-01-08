@@ -3,8 +3,9 @@ version: '3'
 networks:
   reverseproxy-main-network:
     external:
-      name: reverseproxy-backend-network
+      name: reverseproxy-main-network
 
+services:
   reverse:
     container_name: reverseproxy
     hostname: reverseproxy
@@ -14,9 +15,8 @@ networks:
       - 443:443
       - 8080:8080
     volumes:
-      - /etc/nginx:/etc/nginx:ro
+      - /etc/nginx/reverseproxy_main:/etc/nginx:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - reverseproxy-main-network
-    command: /bin/bash -c "cp /etc/nginx/reverseproxy_main.conf nginx.conf"
     restart: always
