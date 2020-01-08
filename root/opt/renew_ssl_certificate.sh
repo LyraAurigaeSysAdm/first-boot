@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # On génère le certificat en utilisant le module certbot "DNS-OVH"
+mkdir -p /var/lib/letsencrypt
 docker run -it --rm --name certbot \
            -v "/etc/letsencrypt:/etc/letsencrypt" \
-           -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
            certbot/dns-ovh:latest certonly --dns-ovh \
            --dns-ovh-credentials /etc/letsencrypt/ovhapi \
            --non-interactive --agree-tos \
