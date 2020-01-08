@@ -3,7 +3,7 @@ version: '3'
 networks:
   reverseproxy-main-network:
     external:
-      name: reverseproxy-backend-network
+      name: reverseproxy-main-network
 
 services:
   web:
@@ -11,11 +11,11 @@ services:
     hostname: gitlab
     image: gitlab/gitlab-ce:latest
     ports:
-      - 22:222
+      - 222:022
     volumes:
-      - /srv/gitlab/config:/etc/gitlab
-      - /srv/gitlab/logs:/var/log/gitlab
-      - /srv/gitlab/data:/opt/docker_gitlab/data
+      - /opt/docker_gitlab/data:/var/opt/gitlab
+      - /var/log/gitlab:/var/log/gitlab
+      - /etc/gitlab:/etc/gitlab
     networks:
       - reverseproxy-main-network
     restart: always
