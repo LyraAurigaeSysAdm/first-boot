@@ -1,17 +1,13 @@
-http {
-    client_max_body_size 100m;
+# GitLab : https://git.lyra-aurigae.space:8080
+server {
+    listen 8080 ssl;
+    server_name git.lyra-aurigae.space;
 
-    # GitLab : https://git.lyra-aurigae.space:8080
-    server {
-        listen 8080 ssl;
-        server_name git.lyra-aurigae.space;
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
 
-        include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
-
-        # Proxy vers le docker GIT
-        location / {
-            proxy_pass http://gitlab;
-            include /etc/nginx/conf.d/reverseproxy_main_include_proxy.conf;
-        }
+    # Proxy vers le docker GIT
+    location / {
+        proxy_pass http://gitlab;
+        include /etc/nginx/conf.d/reverseproxy_main_include_proxy.conf;
     }
 }
