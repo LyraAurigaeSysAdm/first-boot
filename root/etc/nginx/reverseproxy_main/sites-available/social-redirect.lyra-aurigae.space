@@ -1,0 +1,123 @@
+#############################################
+### Redirections vers les réseaux sociaux ###
+#############################################
+
+# Youtube -> youtube, yt
+server {
+    listen 443 ssl;
+    server_name youtube.lyra-aurigae.space yt.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://www.youtube.com/channel/UCtBNrHtGO4RxraEwu0fQpAw;
+}
+
+# Twitter -> twitter
+server {
+    listen 443 ssl;
+    server_name twitter.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://twitter.com/Kane_Universe;
+}
+
+# Facebook -> facebook, fb
+server {
+    listen 443 ssl;
+    server_name facebook.lyra-aurigae.space fb.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://www.facebook.com/Kaneuniverse;
+}
+
+# Discord -> discord
+server {
+    listen 443 ssl;
+    server_name discord.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://discord.gg/VSdGQAU;
+}
+
+# ArtStation -> art, artstation
+server {
+    listen 443 ssl;
+    server_name art.lyra-aurigae.space artstation.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://www.artstation.com/kane_universe;
+}
+
+# DeviantArt -> deviantart
+server {
+    listen 443 ssl;
+    server_name deviantart.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://www.deviantart.com/kaneuniverse;
+}
+
+# Twitch -> twitch, tv
+server {
+    listen 443 ssl;
+    server_name twitch.lyra-aurigae.space tv.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://www.twitch.tv/kaneuniverse;
+}
+
+# Parrainage -> parrainage, parrain
+server {
+    listen 443 ssl;
+    server_name parrainage.lyra-aurigae.space parrain.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://enlist.thebase.sc/fr/?twitch=kaneuniverse&youtube=/channel/UCtBNrHtGO4RxraEwu0fQpAw&referral=STAR-MSCJ-7FRM;
+}
+
+# Corpo RSI -> starcitizen, star-citizen, corpo, corporation
+server {
+    listen 443 ssl;
+    server_name starcitizen.lyra-aurigae.space star-citizen.lyra-aurigae.space corpo.lyra-aurigae.space corporation.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://robertsspaceindustries.com/orgs/LYA;
+}
+
+# Tipeee -> tipeee, tip
+server {
+    listen 443 ssl;
+    server_name tipeee.lyra-aurigae.space tip.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://en.tipeee.com/kaneuniverse;
+}
+
+# Ko-Fi -> ko-fi, kofi, don
+server {
+    listen 443 ssl;
+    server_name ko-fi.lyra-aurigae.space kofi.lyra-aurigae.space don.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://ko-fi.com/kaneuniverse;
+}
+
+# Utip -> utip
+server {
+    listen 443 ssl;
+    server_name utip.lyra-aurigae.space;
+
+    # Redirection
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+    return 301 https://utip.io/aaronkane;
+}

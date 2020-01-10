@@ -27,8 +27,8 @@ fi
 
 # On copie les fichiers nécessaires
 rsync -r ../root/* /
-ln -s /etc/nginx/reverseproxy_main/sites-available/lyra-aurigae.space /etc/nginx/reverseproxy_main/sites-enabled/lyra-aurigae.space
-ln -s /etc/nginx/reverseproxy_main/sites-available/social-redirect.lyra-aurigae.space /etc/nginx/reverseproxy_main/sites-enabled/social-redirect.lyra-aurigae.space
+cp /etc/nginx/reverseproxy_main/sites-available/lyra-aurigae.space /etc/nginx/reverseproxy_main/sites-enabled/lyra-aurigae.space
+cp /etc/nginx/reverseproxy_main/sites-available/social-redirect.lyra-aurigae.space /etc/nginx/reverseproxy_main/sites-enabled/social-redirect.lyra-aurigae.space
 echo ""
 echo "*************************************"
 echo "* Fichiers du dossier racine copiés *"

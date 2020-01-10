@@ -1,0 +1,17 @@
+#######################################
+### Reverse proxy pour le front-end ###
+#######################################
+
+# Principal, Wiki
+server {
+    listen 443 ssl;
+    server_name lyra-aurigae.space wiki.lyra-aurigae.space;
+
+    include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;
+
+    # Site principal
+    location / {
+        proxy_pass http://gitlab; # Temporairement, tout va sur le git
+        include /etc/nginx/conf.d/reverseproxy_main_include_proxy.conf;
+    }
+}
