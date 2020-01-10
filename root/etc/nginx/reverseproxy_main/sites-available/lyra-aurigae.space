@@ -11,7 +11,7 @@ server {
 
     # Site principal
     location / {
-        proxy_pass http://gitlab; # Temporairement, tout va sur le git
+        proxy_pass http://iamtheproudownerofthelongestlongestlongestdomainnameinthisworld.com; # Temporairement, tout va sur un site inutile
         include /etc/nginx/conf.d/reverseproxy_main_include_proxy.conf;
     }
 }
