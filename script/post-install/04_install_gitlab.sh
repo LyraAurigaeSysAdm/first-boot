@@ -28,7 +28,7 @@ fi
 # On copie les fichiers nécessaires
 rsync -r ../root/* /
 mkdir -p /opt/docker_gitlab/data /var/log/gitlab /etc/gitlab /etc/nginx/sites-enabled
-ln -s /etc/nginx/sites-available/git.lyra-aurigae.space /etc/nginx/sites-enabled/git.lyra-aurigae.space
+ln -s /etc/nginx/reverseproxy_main/sites-available/git.lyra-aurigae.space /etc/nginx/reverseproxy_main/sites-enabled/git.lyra-aurigae.space
 echo ""
 echo "*************************************"
 echo "* Fichiers du dossier racine copiés *"
