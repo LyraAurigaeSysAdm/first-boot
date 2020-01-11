@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# On installe le docker NginX
+echo ""
+echo "*********************************"
+echo "* Installation du reverse proxy *"
+echo "*********************************"
+echo ""
+
+# On installe Docker-compose
+if (( $(ls /usr/local/bin | grep docker-compose | wc -l) > 0 ))
+then
+echo ""
+echo "********************************"
+echo "* Docker-compose déjà installé *"
+echo "********************************"
+echo ""
+else
+curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+echo ""
+echo "***************************"
+echo "* Docker-compose installé *"
+echo "***************************"
+echo ""
+fi
+
+# On copie les fichiers nécessaires
+rsync -r ../root/* /
+mkdir -p /etc/nginx/reverseproxy_main/sites-enabled/
+cp /etc/nginx/reverseproxy_main/sites-available/lyra-aurigae.space /etc/nginx/reverseproxy_main/sites-enabled/lyra-aurigae.space
+cp /etc/nginx/reverseproxy_main/sites-available/social-redirect.lyra-aurigae.space /etc/nginx/reverseproxy_main/sites-enabled/social-redirect.lyra-aurigae.space
+echo ""
+echo "*************************************"
+echo "* Fichiers du dossier racine copiés *"
+echo "*************************************"
+echo ""
+
+# On lance le docker compose de GitLab
+docker network create -d bridge --subnet 172.10.0.0/24 reverseproxy-main-network
+cd /opt/docker_reverseproxy && docker-compose up -d
+echo ""
+echo "**************************************************************"
+echo "* Reverse proxy installé (vérifiez les erreurs potentielles) *"
+echo "**************************************************************"
+echo ""

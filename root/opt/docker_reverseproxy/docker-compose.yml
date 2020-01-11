@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+  reverseproxy-main-network:
+    external:
+      name: reverseproxy-main-network
+
+services:
+  reverse:
+    container_name: reverseproxy
+    hostname: reverseproxy
+    image: nginx:stable-alpine
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /etc/nginx/reverseproxy_main:/etc/nginx:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - reverseproxy-main-network
+    restart: always
