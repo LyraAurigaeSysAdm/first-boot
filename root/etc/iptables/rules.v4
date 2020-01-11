@@ -1,23 +1,70 @@
+### INIT FILTER TABLE
+*filter
+### Protocol Default
+# Drop ALL ingoing packet by default
+:INPUT DROP [0:0]
+# Drop ALL forwarded packet by default
+:FORWARD DROP [0:0]
+# Drop all outgoing paquet by default
+:OUTPUT DROP [0:0]
+
+# LOG_ACCEPT rule which log and accept packet
+:LOG_ACCEPT - [0:0]
+# LOG_DROP rule which log and drop packet
+:LOG_DROP - [0:0]
+
+
 -P INPUT DROP
 -P FORWARD DROP
 -P OUTPUT DROP
+###
+
+### Accept all traffic on local interface
 -A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+###
+
+### DNS - Accept all TCP/UDP traffic
 -A INPUT -i eht0 -p udp -m udp --sport 53 -j ACCEPT
 -A INPUT -i eht0 -p tcp -m tcp --sport 53 -j ACCEPT
--A INPUT -i eht0 -m state --state ESTABLISHED -j ACCEPT
--A OUTPUT -o lo -j ACCEPT
 -A OUTPUT -o eht0 -p udp -m udp --dport 53 -j ACCEPT
 -A OUTPUT -o eht0 -p tcp -m tcp --dport 53 -j ACCEPT
+###
+
+### Default Traffic Policy
+# Allow host to receive already established connexion with the outside world and maintain them
+-A INPUT -i eht0 -m state --state ESTABLISHED -j ACCEPT
+# Allow host to initiate connexion with the outside world and maintain them
 -A OUTPUT -o eht0 -m state --state NEW,ESTABLISHED -j ACCEPT
+###
+
+### Allow sending/receiving ping
 -A INPUT -p icmp -j ACCEPT
 -A OUTPUT -p icmp -m conntrack --ctstate NEW,RELATED,ESTABLISHED -j ACCEPT
+###
+
+### Drop dumb protocol silently
+-A INPUT -d 224.0.0.0/8 -i eth0 -j DROP
+-A INPUT -s 224.0.0.0/8 -i eth0 -j DROP
+###
+
+### Accept connexion on the HTTP/HTTPS port (80/443)
 -A INPUT -m multiport --dports http,https --state NEW,ESTABLISHED -j ACCEPT
--N LOG_ACCEPT
+###
+
+### Custom Jump Rules
+# LOG_ACCEPT rule which log and accept packet
 -A LOG_ACCEPT -j LOG --log-prefix "[IPTABLES ACCEPT] : "
 -A LOG_ACCEPT -j ACCEPT
--N LOG_DROP
+# LOG_DROP rule which log and drop packet
 -A LOG_DROP -j LOG --log-prefix "[IPTABLES DROP] : "
 -A LOG_DROP -j DROP
+###
+
+### Collect all Garbage packets which don't correspond to above rules and LOG_DROP them
 -A OUTPUT -j LOG_DROP
 -A INPUT -j LOG_DROP
 -A FORWARD -j LOG_DROP
+###
+
+COMMIT
