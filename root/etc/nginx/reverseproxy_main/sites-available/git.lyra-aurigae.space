@@ -1,6 +1,6 @@
-# GitLab : https://git.lyra-aurigae.space:8080
+# GitLab : https://git.lyra-aurigae.space
 server {
-    listen 8080 ssl;
+    listen 443 ssl;
     server_name git.lyra-aurigae.space;
 
     include /etc/nginx/conf.d/reverseproxy_main_include_ssl.conf;

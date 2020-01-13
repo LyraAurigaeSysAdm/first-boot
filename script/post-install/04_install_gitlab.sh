@@ -26,9 +26,10 @@ echo ""
 fi
 
 # On copie les fichiers nécessaires
-rsync -r ../root/* /
-mkdir -p /opt/docker_gitlab/data /var/log/gitlab /etc/gitlab /etc/nginx/reverseproxy_main/sites-enabled
-cp /etc/nginx/reverseproxy_main/sites-available/git.lyra-aurigae.space /etc/nginx/reverseproxy_main/sites-enabled/git.lyra-aurigae.space
+mkdir -p /docker/data/gitlab /docker/log/gitlab /docker/conf.d/gitlab /docker/conf.d/reverseproxy/sites-available /docker/conf.d/reverseproxy/sites-enabled /docker/source/compose/gitlab/
+cp ../root/etc/nginx/reverseproxy_main/sites-available/git.lyra-aurigae.space /docker/conf.d/reverseproxy/sites-available/git.lyra-aurigae.space
+cd /docker/conf.d/reverseproxy/sites-enabled && ln -s ../sites-available/git.lyra-aurigae.space gitlab
+cp ../root/opt/docker_gitlab/docker-compose.yml /docker/source/compose/gitlab/docker-compose.yml
 echo ""
 echo "*************************************"
 echo "* Fichiers du dossier racine copiés *"
@@ -37,7 +38,7 @@ echo ""
 
 # On lance le docker compose de GitLab
 docker network create -d bridge --subnet 172.10.0.0/24 reverseproxy-main-network
-cd /opt/docker_gitlab && docker-compose up -d
+cd /docker/source/compose/gitlab && docker-compose up -d
 echo ""
 echo "**************************************************************"
 echo "* Docker Gitlab installé (vérifiez les erreurs potentielles) *"

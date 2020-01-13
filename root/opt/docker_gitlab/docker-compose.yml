@@ -11,11 +11,30 @@ services:
     hostname: gitlab
     image: gitlab/gitlab-ce:latest
     ports:
-      - 222:022
+      - 2222:022
     volumes:
-      - /opt/docker_gitlab/data:/var/opt/gitlab
-      - /var/log/gitlab:/var/log/gitlab
-      - /etc/gitlab:/etc/gitlab
+      - /docker/data/gitlab:/var/opt/gitlab
+      - /docker/log/gitlab:/var/log/gitlab
+      - /docker/conf.d/gitlab:/etc/gitlab
     networks:
       - reverseproxy-main-network
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://git.lyra-aurigae.space'
+        nginx['listen_https'] = false
+        nginx['listen_port'] = 80
+        # gitlab_rails['smtp_enable'] = true
+        # gitlab_rails['smtp_address'] = "localhost"
+        # gitlab_rails['smtp_port'] = 465
+        # gitlab_rails['smtp_user_name'] = "smtp user"
+        # gitlab_rails['smtp_password'] = "smtp password"
+        # gitlab_rails['smtp_domain'] = "lyra-aurigae.space"
+        # gitlab_rails['smtp_authentication'] = "login"
+        # gitlab_rails['smtp_enable_starttls_auto'] = true
+        # gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
+
+        # # If your SMTP server does not like the default 'From: gitlab@localhost' you
+        # # can change the 'From' with this setting.
+        # gitlab_rails['gitlab_email_from'] = 'gitlab@lyra-aurigae.space'
+        # gitlab_rails['gitlab_email_reply_to'] = 'noreply@lyra-aurigae.space'
     restart: always
